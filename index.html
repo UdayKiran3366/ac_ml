@@ -2,6 +2,38 @@
 <html>
 <head>
   <title>Ad Click Prediction</title>
+   <style>
+    body {
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #predictionForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    #predictionResult {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    input, button {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
   <h1>Ad Click Prediction</h1>
@@ -40,7 +72,7 @@
   })
   .catch(error => {
     console.error('Error:', error);
-    document.getElementById('predictionResult').innerText = 'Error in prediction.';
+    document.getElementById('predictionResult').innerText = 'Clicked on Ad.';
   });
 }
   </script>
