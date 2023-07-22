@@ -27,7 +27,7 @@ def predict_click():
         Time_spent = data['Time_spent']
 
         # Perform prediction using the ML model
-        prediction = model.predict([[Age, Gender, Time_spent]])
+        prediction = log_reg_model.predict([[Age, Gender, Time_spent]])
 
         # Return the prediction result
         return jsonify({'prediction': bool(prediction[0])})
