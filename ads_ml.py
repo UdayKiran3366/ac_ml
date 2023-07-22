@@ -45,32 +45,3 @@ Accuracy
 log_reg_model.predict([[68.95,35,0]])
 
 joblib.dump(log_reg_model, 'model.pkl')
-
-from flask import Flask, request, jsonify
-import joblib
-
-app = Flask(__name__)
-
-# Load the trained ML model
-model = joblib.load('model.pkl')
-
-@app.route('/predict', methods=['POST'])
-def predict_click():
-    try:
-        # Get user input from the request
-        data = request.get_json()
-        Age = data['Age']
-        Gender = data['Gender']
-        Time_spent = data['Time_spent']
-
-        # Perform prediction using the ML model
-        prediction = model.predict([[Age, Gender, Time_spent]])
-
-        # Return the prediction result
-        return jsonify({'prediction': bool(prediction[0])})
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-if __name__ == '__main__':
-    app.run(debug=True)
