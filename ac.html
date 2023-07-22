@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ad Click Prediction</title>
+</head>
+<body>
+  <h1>Ad Click Prediction</h1>
+  <form id="predictionForm">
+    <label for="Age">Age:</label>
+    <input type="number" id="Age" required>
+
+    <label for="Gender">Gender (0: Male, 1: Female):</label>
+    <input type="number" id="Gender" required>
+
+    <label for="Time_Spent">Time_spent:</label>
+    <input type="number" id="Time_spent" required>
+
+    <button type="button" onclick="predictClick()">Predict Click</button>
+  </form>
+
+  <div id="predictionResult"></div>
+
+  <script>
+    function predictClick() {
+  const age = document.getElementById('age').value;
+  const gender = document.getElementById('gender').value;
+  const timeSpent = document.getElementById('timeSpent').value;
+
+  fetch('/predict', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 'age': age, 'gender': gender, 'timeSpent': timeSpent })
+  })
+  .then(response => response.json())
+  .then(data => {
+    const result = data.prediction ? 'Ad Clicked!' : 'Ad Not Clicked.';
+    document.getElementById('predictionResult').innerText = `Prediction Result: ${result}`;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    document.getElementById('predictionResult').innerText = 'Error in prediction.';
+  });
+}
+  </script>
+</body>
+</html>
