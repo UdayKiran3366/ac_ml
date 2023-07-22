@@ -22,16 +22,16 @@
 
   <script>
     function predictClick() {
-  const age = document.getElementById('age').value;
-  const gender = document.getElementById('gender').value;
-  const timeSpent = document.getElementById('timeSpent').value;
+  const Age = document.getElementById('Age').value;
+  const Gender = document.getElementById('Gender').value;
+  const Time_spent = document.getElementById('Time_spent').value;
 
   fetch('/predict', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ 'age': age, 'gender': gender, 'timeSpent': timeSpent })
+    body: JSON.stringify({ 'Age': Age, 'Gender': Gender, 'Time_spent': Time_spent })
   })
   .then(response => response.json())
   .then(data => {
